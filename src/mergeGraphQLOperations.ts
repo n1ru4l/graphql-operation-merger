@@ -33,7 +33,9 @@ export const mergeSelections = (
   selectionsA: ReadonlyArray<SelectionNode>,
   selectionsB: ReadonlyArray<SelectionNode>
 ): DeepWritable<Array<SelectionNode>> => {
-  const newSelections: Array<SelectionNode> = [...selectionsA];
+  const newSelections: Array<SelectionNode> = selectionsA.map((selection) =>
+    cloneDeep(selection)
+  );
   for (const selectionNode of selectionsB) {
     if (selectionNode.kind === "Field") {
       const match = newSelections.find(
@@ -53,7 +55,9 @@ export const mergeSelections = (
           );
         }
       } else {
-        newSelections.push(selectionNode as DeepWritable<SelectionNode>);
+        newSelections.push(
+          cloneDeep(selectionNode) as DeepWritable<SelectionNode>
+        );
       }
     } else if (selectionNode.kind === "InlineFragment") {
       const match = newSelections.find(
@@ -71,10 +75,14 @@ export const mergeSelections = (
           selectionNode.selectionSet.selections
         );
       } else {
-        newSelections.push(selectionNode as DeepWritable<SelectionNode>);
+        newSelections.push(
+          cloneDeep(selectionNode) as DeepWritable<SelectionNode>
+        );
       }
     } else {
-      newSelections.push(selectionNode as DeepWritable<SelectionNode>);
+      newSelections.push(
+        cloneDeep(selectionNode) as DeepWritable<SelectionNode>
+      );
     }
   }
 
