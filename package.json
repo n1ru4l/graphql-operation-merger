@@ -20,7 +20,7 @@
     "analyze": "size-limit --why"
   },
   "peerDependencies": {
-    "graphql": "15.x.x"
+    "graphql": "15.x.x || 16.x"
   },
   "husky": {
     "hooks": {
@@ -44,7 +44,7 @@
     "@graphql-codegen/testing": "1.17.7",
     "@size-limit/preset-small-lib": "4.7.0",
     "@types/lodash.clonedeep": "4.5.6",
-    "graphql": "15.5.0",
+    "graphql": "16.9.0",
     "husky": "4.3.8",
     "prettier": "2.2.1",
     "size-limit": "4.9.0",
